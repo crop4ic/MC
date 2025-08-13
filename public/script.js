@@ -10,12 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }, 2500);
     
-    // Имитация данных (в реальном приложении здесь был бы запрос к серверу)
-    const sampleBuilds = [
-        
-    ];
+    // Загрузка сборок с сервера
+    let builds = [];
     
-    let builds = [...sampleBuilds];
+    function loadBuilds() {
+        fetch('/api/builds')
+            .then(response => response.json())
+            .then(data => {
+                builds = data;
+                renderBuilds(builds);
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки сборок:', error);
+                document.getElementById('buildsContainer').innerHTML = 
+                    '<p class="no-builds">Не удалось загрузить сборки. Пожалуйста, попробуйте позже.</p>';
+            });
+    }
     
     // Обработчик формы загрузки
     const uploadForm = document.getElementById('uploadForm');
@@ -23,35 +33,28 @@ document.addEventListener('DOMContentLoaded', function() {
         uploadForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const buildName = document.getElementById('buildName').value;
-            const version = document.getElementById('version').value;
-            const modsCount = document.getElementById('modsCount').value || 0;
-            const description = document.getElementById('description').value;
-            const fileInput = document.getElementById('buildFile');
+            const formData = new FormData();
+            formData.append('name', document.getElementById('buildName').value);
+            formData.append('version', document.getElementById('version').value);
+            formData.append('modsCount', document.getElementById('modsCount').value || 0);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('file', document.getElementById('buildFile').files[0]);
             
-            // В реальном приложении здесь была бы загрузка файла на сервер
-            // Для демонстрации просто добавим сборку в массив
-            const newBuild = {
-                id: builds.length + 1,
-                name: buildName,
-                version: version,
-                modsCount: parseInt(modsCount),
-                description: description,
-                uploadDate: new Date().toISOString().split('T')[0],
-                file: fileInput.files[0] ? fileInput.files[0].name : "new-build.zip"
-            };
-            
-            builds.unshift(newBuild);
-            renderBuilds(builds);
-            
-            // Очистка формы
-            uploadForm.reset();
-            
-            // Прокрутка к каталогу
-            document.getElementById('browse').scrollIntoView({ behavior: 'smooth' });
-            
-            // Показ уведомления
-            alert('Сборка успешно загружена!');
+            fetch('/api/builds', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadBuilds(); // Перезагружаем список сборок
+                uploadForm.reset();
+                document.getElementById('browse').scrollIntoView({ behavior: 'smooth' });
+                alert('Сборка успешно загружена!');
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки:', error);
+                alert('Произошла ошибка при загрузке сборки');
+            });
         });
     }
     
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function applyFilters() {
-        let filteredBuilds = [...sampleBuilds];
+        let filteredBuilds = [...builds];
         
         // Фильтрация по версии
         const versionFilter = filterVersion.value;
@@ -117,27 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${build.modsCount > 0 ? `<span>Модов: ${build.modsCount}</span>` : ''}
                 </div>
                 <p class="build-description">${build.description}</p>
-                <a href="#" class="download-btn" data-id="${build.id}">Скачать</a>
+                <a href="/api/builds/${build.id}/download" class="download-btn" data-id="${build.id}">Скачать</a>
             `;
             
             buildsContainer.appendChild(buildCard);
         });
-        
-        // Обработчики для кнопок скачивания
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const buildId = parseInt(this.getAttribute('data-id'));
-                const build = builds.find(b => b.id === buildId);
-                
-                if (build) {
-                    // В реальном приложении здесь было бы скачивание файла
-                    alert(`Начато скачивание сборки "${build.name}". В реальном приложении файл "${build.file}" был бы загружен.`);
-                }
-            });
-        });
     }
     
     // Первоначальная загрузка сборок
-    renderBuilds(builds);
+    loadBuilds();
 });
