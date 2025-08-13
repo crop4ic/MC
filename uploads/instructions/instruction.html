@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по установке - Mineclub</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mineclub</h1>
+            <p>Инструкция по установке сборок Minecraft</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="/index.html">Главная</a></li>
+                <li><a href="/index.html#upload">Загрузить сборку</a></li>
+                <li><a href=/index.html#browse">Каталог сборок</a></li>
+                <li><a href="#" class="active">Инструкция по установке</a></li>
+            </ul>
+        </nav>
+
+        <section class="installation-section">
+            <h2>Как установить сборку Minecraft</h2>
+            
+            <div class="installation-steps">
+                <div class="step">
+                    <h3>Шаг 1: Установите Minecraft Forge</h3>
+                    <p>Большинство сборок требуют установленного Minecraft Forge.</p>
+                    <ol>
+                        <li>Скачайте Forge для нужной версии Minecraft с <a href="https://files.minecraftforge.net/" target="_blank">официального сайта</a>.</li>
+                        <li>Запустите скачанный установщик и выберите "Install client".</li>
+                        <li>Дождитесь завершения установки.</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h3>Шаг 2: Скачайте сборку</h3>
+                    <p>Выберите понравившуюся сборку в нашем <a href="../index.html#browse">каталоге</a> и скачайте её.</p>
+                    <p>Сборка обычно поставляется в виде ZIP-архива.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Шаг 3: Установите сборку</h3>
+                    <ol>
+                        <li>Нажмите Win + R, введите <code>%appdata%</code> и нажмите Enter.</li>
+                        <li>Перейдите в папку <code>.minecraft</code>.</li>
+                        <li>Найдите папку <code>mods</code> (если её нет - создайте).</li>
+                        <li>Распакуйте содержимое скачанного архива в эту папку.</li>
+                        <li>Если в архиве есть папка <code>config</code>, скопируйте её содержимое в соответствующую папку в <code>.minecraft</code>.</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h3>Шаг 4: Запустите игру</h3>
+                    <ol>
+                        <li>Запустите Minecraft Launcher.</li>
+                        <li>В выпадающем меню слева выберите профиль Forge для нужной версии.</li>
+                        <li>Нажмите "Play" и дождитесь загрузки игры.</li>
+                    </ol>
+                    <p>Если игра не запускается, убедитесь, что у вас установлена правильная версия Java.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Шаг 5: Настройка (опционально)</h3>
+                    <p>Некоторые сборки могут требовать дополнительной настройки:</p>
+                    <ul>
+                        <li>Выделите больше оперативной памяти для Minecraft в настройках лаунчера.</li>
+                        <li>Настройте графические параметры для оптимальной производительности.</li>
+                        <li>Проверьте настройки модов в меню Mods после запуска игры.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="troubleshooting">
+                <h3>Решение проблем</h3>
+                <div class="issue">
+                    <h4>Игра вылетает при запуске</h4>
+                    <p>Возможные причины:</p>
+                    <ul>
+                        <li>Несовместимость версий (проверьте, что версия Forge соответствует версии сборки).</li>
+                        <li>Недостаточно оперативной памяти (попробуйте выделить 4ГБ или больше).</li>
+                        <li>Отсутствие необходимых библиотек (установите последнюю версию Java).</li>
+                    </ul>
+                </div>
+                
+                <div class="issue">
+                    <h4>Моды не загружаются</h4>
+                    <p>Попробуйте:</p>
+                    <ul>
+                        <li>Удалить папку <code>mods</code> и создать её заново.</li>
+                        <li>Проверить, что файлы модов не находятся во вложенных папках.</li>
+                        <li>Убедиться, что файлы модов имеют расширение .jar или .zip.</li>
+                    </ul>
+                </div>
+                
+                <div class="issue">
+                    <h4>Низкая производительность</h4>
+                    <p>Рекомендации:</p>
+                    <ul>
+                        <li>Установите оптимизационные моды (OptiFine, Sodium и др.).</li>
+                        <li>Уменьшите настройки графики.</li>
+                        <li>Закройте другие ресурсоемкие приложения.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2023 Mineclub. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>

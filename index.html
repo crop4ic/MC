@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineclub - Сборки Minecraft</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Анимация при запуске -->
+    <div class="splash-screen">
+        <div class="splash-content">
+            <h1 class="mineclub-title">Mineclub</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container" style="display: none;">
+        <header>
+            <h1>Mineclub</h1>
+            
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Главная</a></li>
+                <li><a href="#upload">Загрузить сборку</a></li>
+                <li><a href="#browse">Каталог сборок</a></li>
+                <li><a href="/uploads/instructions/instruction.html">Инструкция по установке</a></li>
+            </ul>
+        </nav>
+
+        <section id="upload" class="upload-section">
+            <h2>Загрузить свою сборку</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="buildName">Название сборки:</label>
+                    <input type="text" id="buildName" required>
+                </div>
+                <div class="form-group">
+                    <label for="version">Версия Minecraft:</label>
+                    <select id="version" required>
+                        <option value="">Выберите версию</option>
+                        <option value="1.20">1.20</option>
+                        <option value="1.19">1.19</option>
+                        <option value="1.18">1.18</option>
+                        <option value="1.17">1.17</option>
+                        <option value="1.16">1.16</option>
+                        <option value="1.15">1.15</option>
+                        <option value="1.14">1.14</option>
+                        <option value="1.12">1.12</option>
+                        <option value="1.7.10">1.7.10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modsCount">Количество модов (необязательно):</label>
+                    <input type="number" id="modsCount" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="buildFile">Файл сборки (ZIP или RAR):</label>
+                    <input type="file" id="buildFile" accept=".zip,.rar" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание сборки:</label>
+                    <textarea id="description" rows="4"></textarea>
+                </div>
+                <button type="submit">Загрузить</button>
+            </form>
+        </section>
+
+        <section id="browse" class="browse-section">
+            <h2>Каталог сборок</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="filterVersion">Фильтр по версии:</label>
+                    <select id="filterVersion">
+                        <option value="">Все версии</option>
+                        <option value="1.20">1.20</option>
+                        <option value="1.19">1.19</option>
+                        <option value="1.18">1.18</option>
+                        <option value="1.17">1.17</option>
+                        <option value="1.16">1.16</option>
+                        <option value="1.15">1.15</option>
+                        <option value="1.14">1.14</option>
+                        <option value="1.12">1.12</option>
+                        <option value="1.7.10">1.7.10</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">Сортировка:</label>
+                    <select id="sortBy">
+                        <option value="newest">Сначала новые</option>
+                        <option value="oldest">Сначала старые</option>
+                        <option value="modsHigh">Больше модов</option>
+                        <option value="modsLow">Меньше модов</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="buildsContainer" class="builds-container">
+                <!-- Сборки будут загружаться здесь через JavaScript -->
+                <p class="no-builds">Загрузка сборок...</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Андрей пидарас</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
